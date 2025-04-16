@@ -4,21 +4,39 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float health = 100;
+    public string characterName = "New Character";
+    public int maxHealth = 100;
+    public int currentHealth;
+
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-    void Update()
-    {
-        
+        Debug.Log(characterName + " took " + damage + " damage. Remaining HP: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
-    
-    public float NewHealth(float curHealth, float damage)
+
+    public void Heal(int amount)
     {
-        float newHealth = curHealth - damage;
-        return newHealth;
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        Debug.Log(characterName + " healed " + amount + " HP. Current HP: " + currentHealth);
+    }
+
+    private void Die()
+    {
+        Debug.Log(characterName + " has died!");
+        
     }
 }
