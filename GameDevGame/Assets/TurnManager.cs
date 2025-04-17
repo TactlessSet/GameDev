@@ -34,6 +34,12 @@ public class TurnManager : MonoBehaviour
         }
 
         Debug.Log($"It's {currentPartyMember.name}'s turn!");
+        FindObjectOfType<PlayerCombatController>().EnableActionPanel();
+    }
+
+    public Health GetCurrentPartyMember()
+    {
+        return currentPartyMember;
     }
 
     void BeginPlayerTurn()
