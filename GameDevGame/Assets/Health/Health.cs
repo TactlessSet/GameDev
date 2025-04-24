@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public string characterName = "New Character";
     public int maxHealth = 100;
     public int currentHealth;
+    public Sprite combatSprite;
 
     void Start()
     {

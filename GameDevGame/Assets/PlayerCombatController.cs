@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+
 
 public class PlayerCombatController : MonoBehaviour
 {
     public static PlayerCombatController Instance;
     public TurnManager turnManager;
     public GameObject actionPanel;
+    public AttackAnimaticUI animaticUI; 
+
+    public Sprite exampleAttackerSprite;
+    public Sprite exampleVictimSprite;
     public bool IsTargeting => isTargeting;
 
     private bool isTargeting = false;
@@ -13,7 +19,7 @@ public class PlayerCombatController : MonoBehaviour
     void Start()
     {
         Instance = this;
-        actionPanel.SetActive(false); //hide by default
+        actionPanel.SetActive(false); //WORK PLEASEEEEE
     }
 
     void Update()
@@ -43,12 +49,25 @@ public class PlayerCombatController : MonoBehaviour
     void AttackEnemy(Health enemy)
     {
         Health attacker = turnManager.GetCurrentPartyMember();
+        Sprite attackerSprite = attacker.combatSprite;
+        Sprite victimSprite = enemy.combatSprite;
 
+        animaticUI.PlayAnimatic(attackerSprite, victimSprite);
         int damage = 10; 
         Debug.Log($"{attacker.name} attacks {enemy.name} for {damage} damage!");
-        enemy.TakeDamage(damage);
+        StartCoroutine(DelayedAttack(enemy, damage));
+        //enemy.TakeDamage(damage);
 
         isTargeting = false;
+        actionPanel.SetActive(false);
+       // turnManager.OnPartyMemberActed();
+    }
+
+    IEnumerator DelayedAttack(Health enemy, int damage)
+    {
+        yield return new WaitForSeconds(1.5f); 
+
+        enemy.TakeDamage(damage);
         actionPanel.SetActive(false);
         turnManager.OnPartyMemberActed();
     }
