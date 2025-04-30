@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_Name
-      value: TempEnemy 2
+      value: Goblin 2
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_TagString
@@ -430,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -222.8}
+  m_AnchoredPosition: {x: -17.100006, y: -222.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224472579
@@ -576,7 +576,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_Name
-      value: TempPartyMember2
+      value: Swordsman
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_Sprite
@@ -596,7 +596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9820001
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1094,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65.99994, y: -212}
+  m_AnchoredPosition: {x: -84.099945, y: -212}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625015603
@@ -1381,8 +1381,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_Name
-      value: TempPartyMember4
+      value: Rogue
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8850888509348770162, guid: de764736eea6c054fb1f8f8d055a64df, type: 3}
     - target: {fileID: 7878350319992209165, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -1397,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2679999
+      value: -1.63
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1515,7 +1519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45.100006, y: -212}
+  m_AnchoredPosition: {x: 26.000002, y: -212}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728487056
@@ -1675,10 +1679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea2bc8a50a3271409818c5cb9179aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Healer
+  characterName: Rogue
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -7056100935573999508, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
+  combatSprite: {fileID: -3829320354853480014, guid: 3593d18bdfcca5143972153d59bf57e5, type: 3}
 --- !u!1 &801103253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,7 +2072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.100006, y: -222.8}
+  m_AnchoredPosition: {x: 87, y: -222.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018973957
@@ -2342,15 +2346,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.62352943}
+  m_Color: {r: 0.83137256, g: 0.73618186, b: 0, a: 0.70980394}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 3265903235963803663, guid: b30b37872dc5e5d43a8e8dcc2e8675b0, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2578,10 +2582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea2bc8a50a3271409818c5cb9179aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Mage
+  characterName: Healer
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2853821359458557169, guid: 9b6a3215e5e5e764493f43091876f5e6, type: 3}
+  combatSprite: {fileID: 7509128041966641186, guid: d67372923517eff47a09760fc0e8a2bf, type: 3}
 --- !u!1 &1147542518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
@@ -2945,7 +2949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -167, y: -212}
+  m_AnchoredPosition: {x: -189.1, y: -212}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251625612
@@ -3258,14 +3262,14 @@ RectTransform:
   m_GameObject: {fileID: 1431053820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1070843004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 667, y: 0}
+  m_AnchoredPosition: {x: 576, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431053822
@@ -3376,7 +3380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -207.19998, y: -222.8}
+  m_AnchoredPosition: {x: -227, y: -222.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452271189
@@ -3711,14 +3715,14 @@ RectTransform:
   m_GameObject: {fileID: 1573244803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1070843004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -563, y: 0}
+  m_AnchoredPosition: {x: -522, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1573244805
@@ -4066,7 +4070,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268.9, y: -212}
+  m_AnchoredPosition: {x: -288.7, y: -212}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659979144
@@ -4151,7 +4155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea2bc8a50a3271409818c5cb9179aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Player
+  characterName: Mage
   maxHealth: 100
   currentHealth: 100
   combatSprite: {fileID: -5958174828266003509, guid: 9028f3ab66869da429f6361a0362ded1, type: 3}
@@ -4165,7 +4169,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_Name
-      value: TempPartyMember
+      value: Knight
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_Size.y
@@ -4201,7 +4205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.448
+      value: -5.8440003
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4281,7 +4285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -104, y: -222.8}
+  m_AnchoredPosition: {x: -126.100006, y: -222.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734935371
@@ -4476,7 +4480,7 @@ MonoBehaviour:
   characterName: Swordsman
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: 721000420574257652, guid: 9fc9d3e888000e34aa98bbcecc9457bc, type: 3}
+  combatSprite: {fileID: 622063522185032398, guid: 9fc9d3e888000e34aa98bbcecc9457bc, type: 3}
 --- !u!1 &1841543701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5057,7 +5061,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_Name
-      value: TempPartyMember3
+      value: Healer
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_Sprite
@@ -5077,7 +5081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.258
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5254,7 +5258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_Name
-      value: TempEnemy
+      value: Goblin 1
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_TagString
@@ -5336,7 +5340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 0a61a83afa4807b4b814bd1a0e3f7f26, type: 3}
       propertyPath: m_Name
-      value: TempPlayer
+      value: Mage
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 0a61a83afa4807b4b814bd1a0e3f7f26, type: 3}
       propertyPath: m_Sprite

@@ -14,7 +14,7 @@ public class AttackAnimaticUI : MonoBehaviour
 
     public void PlayAnimatic(Sprite attacker, Sprite victim)
     {
-        Debug.Log("PlayAnimatic called");
+        //Debug.Log("PlayAnimatic called");
 
         attackerImage.sprite = attacker;
         victimImage.sprite = victim;
@@ -27,7 +27,7 @@ public class AttackAnimaticUI : MonoBehaviour
     private IEnumerator HideAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Hiding animatic panel after delay");
+        //Debug.Log("Hiding animatic panel after delay");
         gameObject.SetActive(false);
     }
 }
