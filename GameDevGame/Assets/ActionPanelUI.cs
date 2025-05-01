@@ -11,6 +11,12 @@ public class ActionPanelUI : MonoBehaviour
 
     public void ShowActions(List<CharacterAction> actions)
     {
+        Debug.Log($"ShowActions called with {actions.Count} actions.");
+        Debug.Log($"ActionButtons length: {actionButtons.Length}");
+        for (int i = 0; i < actionButtons.Length; i++)
+        {
+            Debug.Log($"Button {i}: {(actionButtons[i] != null ? actionButtons[i].name : "null")}");
+        }
         gameObject.SetActive(true);
         Debug.Log("Showing actions...");
         currentActions = actions.ToArray();

@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
 
     public Dictionary<BuffType, int> activeBuffs = new Dictionary<BuffType, int>();
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         InitializeCharacterActions();
@@ -41,6 +41,8 @@ public class Health : MonoBehaviour
                 actions.Add(new CharacterAction("Cloak Self", (user, target) => 
                 {
                     user.ApplyBuff(BuffType.Invisibility, 2);
+                    var spriteRenderer = this.GetComponent<SpriteRenderer>();
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
                     Debug.Log($"{user.characterName} becomes invisible!");
                 }));
                 break;

@@ -88,14 +88,12 @@ public class PlayerCombatController : MonoBehaviour
             return;
         }
 
-        // Check if actionPanel is properly assigned in the Inspector
         if (actionPanel == null)
         {
             Debug.LogError("ActionPanel GameObject is not assigned in the Inspector!");
             return;
         }
 
-        // Get ActionPanelUI component from the actionPanel GameObject
         ActionPanelUI actionUI = actionPanel.GetComponent<ActionPanelUI>();
         if (actionUI != null)
         {

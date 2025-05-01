@@ -8,6 +8,7 @@ public class CharacterAction
     public string actionName;
     // Change Action<Health> to Action<Health, Health> to accept both the user and the target
     public System.Action<Health, Health> actionEffect;
+    public bool requiresTarget;
 
     public CharacterAction(string name, System.Action<Health, Health> effect)
     {
