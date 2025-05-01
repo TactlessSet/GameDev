@@ -74,6 +74,49 @@ public class PlayerCombatController : MonoBehaviour
 
     public void EnableActionPanel()
     {
-        actionPanel.SetActive(true);
+        var currentChar = TurnManager.Instance.GetCurrentPartyMember();
+        if (currentChar == null)
+        {
+            Debug.LogError("Current character is null!");
+            return;
+        }
+
+        var health = currentChar.GetComponent<Health>();
+        if (health == null)
+        {
+            Debug.LogError("Health component missing from current character!");
+            return;
+        }
+
+        // Check if actionPanel is properly assigned in the Inspector
+        if (actionPanel == null)
+        {
+            Debug.LogError("ActionPanel GameObject is not assigned in the Inspector!");
+            return;
+        }
+
+        // Get ActionPanelUI component from the actionPanel GameObject
+        ActionPanelUI actionUI = actionPanel.GetComponent<ActionPanelUI>();
+        if (actionUI != null)
+        {
+            actionUI.ShowActions(health.actions);
+        }
+        else
+        {
+            Debug.LogError("ActionPanelUI component not found on actionPanel GameObject.");
+        }
+    }
+
+    public void PrepareAction(CharacterAction action)
+    {
+        Debug.Log($"Preparing action: {action.actionName}");
+
+        Health user = turnManager.GetCurrentPartyMember(); // the character doing the action
+        Health target = user; // default to targeting self
+
+        action.ExecuteAction(user, target);
+
+        actionPanel.SetActive(false);
+        turnManager.OnPartyMemberActed();
     }
 }

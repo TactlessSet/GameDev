@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,91 +6,96 @@ public class TurnManager : MonoBehaviour
 {
     public List<Health> partyMembers;
     public List<Health> enemies;
+    public static TurnManager Instance;
+    private List<Health> turnOrder = new List<Health>();
+    private int turnIndex = 0;
 
-    private int currentTurnIndex = 0;
-    private bool isPlayerTurn = true;
-    private Health currentPartyMember;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
-        BeginPlayerTurn();
+        turnOrder.Clear(); // more of a debug thing than anything; not necessaryr
+        //combine entities
+        turnOrder.AddRange(partyMembers);
+        turnOrder.AddRange(enemies);
+        foreach (var unit in turnOrder)
+        {
+            //Debug.Log($"Added to turnOrder: {unit.name}");
+        }
+        ContinueTurnCycle();
     }
 
-    void AdvanceToNextPartyMember()
+    void ContinueTurnCycle()
     {
-        if (currentTurnIndex >= partyMembers.Count)
+        if (turnOrder.Count == 0)
         {
-            EndPlayerTurn();
+            Debug.LogError("No combatants found.");
             return;
         }
 
-        currentPartyMember = partyMembers[currentTurnIndex];
-
-        // Skip dead members
-        if (currentPartyMember.currentHealth <= 0)
+        if (turnIndex >= turnOrder.Count)
         {
-            currentTurnIndex++;
-            AdvanceToNextPartyMember(); //skip dead
+            turnIndex = 0;
+        }
+
+        Health current = turnOrder[turnIndex];
+
+        // Skip dead units
+        if (current.currentHealth <= 0)
+        {
+            turnIndex++;
+            ContinueTurnCycle();
             return;
         }
 
-        Debug.Log($"It's {currentPartyMember.name}'s turn!");
-        FindObjectOfType<PlayerCombatController>().EnableActionPanel();
+        if (partyMembers.Contains(current))
+        {
+            Debug.Log($"It's {current.name}'s turn (Player)!");
+            FindObjectOfType<PlayerCombatController>().EnableActionPanel();
+        }
+        else if (enemies.Contains(current))
+        {
+            Debug.Log($"It's {current.name}'s turn (Enemy)!");
+            StartCoroutine(EnemyAct(current));
+        }
     }
 
     public Health GetCurrentPartyMember()
     {
-        return currentPartyMember;
-    }
+        if (turnIndex < turnOrder.Count && partyMembers.Contains(turnOrder[turnIndex]))
+        {
+            return turnOrder[turnIndex];
+        }
 
-    void BeginPlayerTurn()
-    {
-        isPlayerTurn = true;
-        currentTurnIndex = 0;
-        AdvanceToNextPartyMember();
-        // Player turn
+        return null;
     }
 
     public void OnPartyMemberActed()
     {
-        currentTurnIndex++;
-        AdvanceToNextPartyMember();
+        var lastActor = turnOrder[turnIndex];
+        lastActor.GetComponent<Health>().TickBuffs();
+
+        turnIndex++;
+        ContinueTurnCycle();
     }
 
-    public void EndPlayerTurn()
+    IEnumerator EnemyAct(Health enemy)
     {
-        BeginEnemyTurn();
-    }
+        yield return new WaitForSeconds(0.5f);
 
-    void BeginEnemyTurn()
-    {
-        isPlayerTurn = false;
-        currentTurnIndex = 0;
-        Debug.Log("Enemy turn begins");
-        StartCoroutine(EnemyTurnSequence());
-    }
-
-    System.Collections.IEnumerator EnemyTurnSequence()
-    {
-        while (currentTurnIndex < enemies.Count)
+        List<Health> validTargets = partyMembers.FindAll(p => p.currentHealth > 0);
+        if (validTargets.Count > 0)
         {
-            Health enemy = enemies[currentTurnIndex];
-            if (enemy != null && enemy.currentHealth > 0)
-            {
-                //enemy move
-                Health target = partyMembers[Random.Range(0, partyMembers.Count)];
-                if (target != null && target.currentHealth > 0)
-                {
-                    Debug.Log($"{enemy.name} attacks {target.name}");
-                    target.TakeDamage(10); 
-                    yield return new WaitForSeconds(1f);
-                }
-            }
-
-            currentTurnIndex++;
+            Health target = validTargets[Random.Range(0, validTargets.Count)];
+            Debug.Log($"{enemy.name} attacks {target.name}");
+            target.TakeDamage(10);
         }
 
         yield return new WaitForSeconds(1f);
-        BeginPlayerTurn();
+        turnIndex++;
+        ContinueTurnCycle();
     }
 }
