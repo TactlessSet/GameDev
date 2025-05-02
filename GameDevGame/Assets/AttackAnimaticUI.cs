@@ -6,20 +6,45 @@ public class AttackAnimaticUI : MonoBehaviour
 {
     public Image attackerImage;
     public Image victimImage;
+    public GameObject attackPanel;
+    public static AttackAnimaticUI Instance { get; private set; }
+    
+
+    private void Awake()
+    {
+        Debug.Log("AttackAnimaticUI Awake called");
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        attackPanel.SetActive(false); //kind of redundant but whatevs
+    }
+
 
     private void Start()
     {
-        //gameObject.SetActive(false); 
+ 
     }
+
 
     public void PlayAnimatic(Sprite attacker, Sprite victim)
     {
-        //Debug.Log("PlayAnimatic called");
+        Debug.Log("PlayAnimatic called");
 
+       
         attackerImage.sprite = attacker;
         victimImage.sprite = victim;
 
-        gameObject.SetActive(true); 
+        // Debug log to check if sprites are valid
+        if (attacker == null || victim == null)
+        {
+            Debug.LogError("Attacker or victim sprite is null!");
+        }
+
+        attackPanel.SetActive(true);
 
         StartCoroutine(HideAfterDelay(1.5f)); 
     }
@@ -27,7 +52,6 @@ public class AttackAnimaticUI : MonoBehaviour
     private IEnumerator HideAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        //Debug.Log("Hiding animatic panel after delay");
-        gameObject.SetActive(false);
+        attackPanel.SetActive(false);
     }
 }

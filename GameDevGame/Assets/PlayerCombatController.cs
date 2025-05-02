@@ -5,21 +5,29 @@ using System.Collections;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    public static PlayerCombatController Instance;
+    public static PlayerCombatController Instance { get; private set; }
+
     public TurnManager turnManager;
     public GameObject actionPanel;
-    public AttackAnimaticUI animaticUI; 
+    public AttackAnimaticUI animaticUI;
 
     public Sprite exampleAttackerSprite;
     public Sprite exampleVictimSprite;
-    public bool IsTargeting => isTargeting;
 
+    public bool IsTargeting => isTargeting;
     private bool isTargeting = false;
+    private bool waitingForTarget = false;
+
+    private CharacterAction currentAction;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        Instance = this;
-        actionPanel.SetActive(false); //WORK PLEASEEEEE
+        actionPanel.SetActive(false);
     }
 
     void Update()
@@ -29,15 +37,33 @@ public class PlayerCombatController : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
-            if (hit != null && hit.CompareTag("Enemy"))
+            if (hit != null)
             {
-                Health enemyStats = hit.GetComponent<Health>();
-                if (enemyStats != null)
+                Health target = hit.GetComponent<Health>();
+                if (target != null)
                 {
-                    AttackEnemy(enemyStats);
+                    // Validate target selection based on action
+                    if (IsValidTarget(target))
+                    {
+                        ReceiveTargetSelection(target);
+                    }
                 }
             }
         }
+    }
+
+    // Validate if the target can be selected
+    private bool IsValidTarget(Health target)
+    {
+        if (target.CompareTag("Enemy") && currentAction != null && currentAction.requiresTarget)
+        {
+            return true;  // Enemy can be selected if the action targets enemies
+        }
+        else if (target.CompareTag("Ally") && currentAction != null && currentAction.requiresTarget)
+        {
+            return true;  // Ally can be selected if the action targets allies
+        }
+        return false;  // Invalid target if not an ally or enemy as per the action requirement
     }
 
     public void OnAttackButtonClicked()
@@ -53,19 +79,18 @@ public class PlayerCombatController : MonoBehaviour
         Sprite victimSprite = enemy.combatSprite;
 
         animaticUI.PlayAnimatic(attackerSprite, victimSprite);
-        int damage = 10; 
+        int damage = 10;
         Debug.Log($"{attacker.name} attacks {enemy.name} for {damage} damage!");
         StartCoroutine(DelayedAttack(enemy, damage));
-        //enemy.TakeDamage(damage);
 
+        // Reset targeting UI state
         isTargeting = false;
         actionPanel.SetActive(false);
-       // turnManager.OnPartyMemberActed();
     }
 
     IEnumerator DelayedAttack(Health enemy, int damage)
     {
-        yield return new WaitForSeconds(1.5f); 
+        yield return new WaitForSeconds(1.5f);
 
         enemy.TakeDamage(damage);
         actionPanel.SetActive(false);
@@ -74,7 +99,10 @@ public class PlayerCombatController : MonoBehaviour
 
     public void EnableActionPanel()
     {
-        var currentChar = TurnManager.Instance.GetCurrentPartyMember();
+        Debug.Log("EnableActionPanel() was called");
+
+        actionPanel.SetActive(true);
+        var currentChar = turnManager.GetCurrentPartyMember();
         if (currentChar == null)
         {
             Debug.LogError("Current character is null!");
@@ -85,12 +113,6 @@ public class PlayerCombatController : MonoBehaviour
         if (health == null)
         {
             Debug.LogError("Health component missing from current character!");
-            return;
-        }
-
-        if (actionPanel == null)
-        {
-            Debug.LogError("ActionPanel GameObject is not assigned in the Inspector!");
             return;
         }
 
@@ -109,12 +131,43 @@ public class PlayerCombatController : MonoBehaviour
     {
         Debug.Log($"Preparing action: {action.actionName}");
 
-        Health user = turnManager.GetCurrentPartyMember(); // the character doing the action
-        Health target = user; // default to targeting self
+        Health user = turnManager.GetCurrentPartyMember();
 
-        action.ExecuteAction(user, target);
+        if (action.requiresTarget)
+        {
+            currentAction = action;
+            waitingForTarget = true;
+            isTargeting = true;
+            Debug.Log("Awaiting target selection...");
+        }
+        else
+        {
+            // Directly execute if no target is needed
+            action.ExecuteAction(user, user); 
+            OnActionCompleted();
+            actionPanel.SetActive(false);
+        }
+    }
 
-        actionPanel.SetActive(false);
+    public void ReceiveTargetSelection(Health target)
+    {
+        if (waitingForTarget && currentAction != null)
+        {
+            Health user = turnManager.GetCurrentPartyMember();
+
+            Debug.Log($"Target selected: {target.characterName}");
+            currentAction.ExecuteAction(user, target);
+
+            waitingForTarget = false;
+            isTargeting = false;
+            actionPanel.SetActive(false);
+
+            OnActionCompleted();
+        }
+    }
+
+    private void OnActionCompleted()
+    {
         turnManager.OnPartyMemberActed();
     }
 }
