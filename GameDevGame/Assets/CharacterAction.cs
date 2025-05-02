@@ -6,11 +6,9 @@ public class CharacterAction
 {
     public string actionName;
     
-    // The effect the action has on the target. It's an Action that takes a user and a target.
     public Action<Health, Health> actionEffect;
     public bool requiresTarget;
 
-    // Constructor to initialize the action with a name and its effect.
     public CharacterAction(string name, Action<Health, Health> effect, bool targetRequired = true)
     {
         actionName = name;

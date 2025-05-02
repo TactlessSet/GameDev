@@ -118,7 +118,7 @@ public class TurnManager : MonoBehaviour
             Health target = validTargets[Random.Range(0, validTargets.Count)];
             Debug.Log($"{enemy.characterName} attacks {target.characterName}");
 
-            target.TakeDamage(100);
+            target.TakeDamage(30);
             //TriggerAnimatic(enemy, target);
 
             yield return new WaitForSeconds(1f);

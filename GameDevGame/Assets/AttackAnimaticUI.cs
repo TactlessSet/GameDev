@@ -38,7 +38,7 @@ public class AttackAnimaticUI : MonoBehaviour
         attackerImage.sprite = attacker;
         victimImage.sprite = victim;
 
-        // Debug log to check if sprites are valid
+        //check is sprites are valid
         if (attacker == null || victim == null)
         {
             Debug.LogError("Attacker or victim sprite is null!");

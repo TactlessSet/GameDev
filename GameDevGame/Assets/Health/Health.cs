@@ -226,8 +226,8 @@ public class Health : MonoBehaviour
 
     private IEnumerator ApplyFlamingDamageOverTime(Health target)
     {
-        int rounds = 5;
-        for (int i = 0; i < rounds; i++)
+        int ticks = 5;
+        for (int i = 0; i < ticks; i++)
         {
             yield return new WaitForSeconds(1f);
             target.TakeDamage(2); 
@@ -240,7 +240,7 @@ public class Health : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         Debug.Log(characterName + " healed " + amount + " HP. Current HP: " + currentHealth);
-        TriggerAnimatic(this, null);  // Healing is a self-action
+        TriggerAnimatic(this, null);
     }
 
     private void Die()
