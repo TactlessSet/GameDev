@@ -98,21 +98,25 @@ public class TurnManager : MonoBehaviour
     }
 
 
-    public void OnPartyMemberActed()
+   public void OnPartyMemberActed()
     {
         var lastActor = turnOrder[turnIndex];
-        lastActor.GetComponent<Health>().TickBuffs(); //tick buffs after action
+        lastActor.GetComponent<Health>().TickBuffs(); // Tick buffs after action
 
-        turnIndex++;
-        ContinueTurnCycle();
+        turnIndex = (turnIndex + 1) % turnOrder.Count; // Ensure turnIndex wraps around
+        ContinueTurnCycle(); // Continue to the next turn
     }
+
 
     //enemy shtuffs
     IEnumerator EnemyAct(Health enemy)
     {
         yield return new WaitForSeconds(0.5f); 
 
-        List<Health> validTargets = partyMembers.FindAll(p => p.currentHealth > 0);
+        List<Health> validTargets = partyMembers.FindAll(p =>
+        p.currentHealth > 0 &&
+        (!p.activeBuffs.ContainsKey(Health.BuffType.Invisibility))
+        );
         if (validTargets.Count > 0)
         {
             Health target = validTargets[Random.Range(0, validTargets.Count)];

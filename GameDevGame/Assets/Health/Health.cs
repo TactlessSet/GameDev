@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     public List<CharacterAction> actions = new List<CharacterAction>();
 
-    public enum BuffType { DamageBoost, Invisibility }
+    public enum BuffType { DamageBoost, Invisibility, DefenseBoost}
     public Dictionary<BuffType, int> activeBuffs = new Dictionary<BuffType, int>();
 
     void Awake()
@@ -34,7 +34,9 @@ public class Health : MonoBehaviour
                 {
                     if (target.CompareTag("Enemy"))
                     {
-                        target.TakeDamage(15);
+                        int baseDamage = 15;
+                        int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
+                        target.TakeDamage(finalDamage);
                         Debug.Log($"{user.characterName} casts Magic Ball at {target.characterName}!");
                         TriggerAnimatic(user, target);
                     }
@@ -62,7 +64,8 @@ public class Health : MonoBehaviour
                 {
                     user.ApplyBuff(BuffType.Invisibility, 2);
                     Debug.Log($"{user.characterName} becomes invisible!");
-                    TriggerAnimatic(user, null);  
+                    TriggerAnimatic(user, null);
+                    TurnManager.Instance.OnPartyMemberActed();  
                     //"invisible"
                     SpriteRenderer spriteRenderer = user.GetComponent<SpriteRenderer>();
                     if (spriteRenderer != null)
@@ -79,14 +82,17 @@ public class Health : MonoBehaviour
             case "Knight":
                 actions.Add(new CharacterAction("Shield", (user, target) =>
                 {
-                    user.ApplyBuff(BuffType.DamageBoost, 2);
+                    user.ApplyBuff(BuffType.DefenseBoost, 2);
                     Debug.Log($"{user.characterName} shields themself!");
-                    TriggerAnimatic(user, null);  // No victim for self-actions
+                    TriggerAnimatic(user, null);
+                    TurnManager.Instance.OnPartyMemberActed();
                 }) { requiresTarget = false });
 
                 actions.Add(new CharacterAction("Crossbow Shot", (user, target) =>
                 {
-                    target.TakeDamage(10);
+                    int baseDamage = 15;
+                    int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
+                    target.TakeDamage(finalDamage);
                     Debug.Log($"{user.characterName} fires a crossbow shot at {target.characterName}!");
                     TriggerAnimatic(user, target);
                 }) { requiresTarget = true });
@@ -103,16 +109,19 @@ public class Health : MonoBehaviour
             case "Swordsman":
                 actions.Add(new CharacterAction("Big Slash", (user, target) =>
                 {
-                    target.TakeDamage(30);  // High damage value
+                    int baseDamage = 30;
+                    int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
+                    target.TakeDamage(finalDamage); // High damage value
                     Debug.Log($"{user.characterName} performs a Big Slash on {target.characterName}!");
                     TriggerAnimatic(user, target);
                 }) { requiresTarget = true });
 
                 actions.Add(new CharacterAction("Sword Block", (user, target) =>
                 {
-                    target.ApplyBuff(BuffType.DamageBoost, 2);  
+                    target.ApplyBuff(BuffType.DefenseBoost, 2);
                     Debug.Log($"{user.characterName} blocks damage for {target.characterName}!");
                     TriggerAnimatic(user, target);
+                    TurnManager.Instance.OnPartyMemberActed();
                 }) { requiresTarget = true });
 
                 actions.Add(new CharacterAction("Rally the Troops", (user, target) =>
@@ -126,6 +135,7 @@ public class Health : MonoBehaviour
                 }
                 Debug.Log($"{user.characterName} rallies the troops, doubling damage for the next round!");
                 TriggerAnimatic(user, null);
+                TurnManager.Instance.OnPartyMemberActed();
                 }) { requiresTarget = false });
                 break;
 
@@ -140,8 +150,8 @@ public class Health : MonoBehaviour
                             Debug.Log($"{user.characterName} makes {ally.characterName} immune to debuffs for 2 rounds!");
                         }
                     }
-                    TriggerAnimatic(user, null);
-                }) { requiresTarget = false });
+                    TriggerAnimatic(user, target);
+                }) { requiresTarget = true });
 
                 actions.Add(new CharacterAction("Heal", (user, target) =>
                 {
@@ -151,7 +161,8 @@ public class Health : MonoBehaviour
                         int healAmount = Mathf.FloorToInt(target.maxHealth * Random.Range(0.2f, 0.3f));
                         target.Heal(healAmount);
                         Debug.Log($"{user.characterName} heals {target.characterName} for {healAmount} HP!");
-                        TriggerAnimatic(user, target);
+                        //TriggerAnimatic(user, target);
+
                     }
                     else
                     {
@@ -162,9 +173,10 @@ public class Health : MonoBehaviour
                 actions.Add(new CharacterAction("Light Attack", (user, target) =>
                 {
                     //weak attack (cus everyone deserves something)
-                    int damage = 5;
-                    target.TakeDamage(damage);
-                    Debug.Log($"{user.characterName} hits {target.characterName} with a Light Attack for {damage} damage!");
+                    int baseDamage = 5;
+                    int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
+                    target.TakeDamage(finalDamage);
+                    Debug.Log($"{user.characterName} hits {target.characterName} with a Light Attack for {finalDamage} damage!");
                     TriggerAnimatic(user, target);
                 }) { requiresTarget = true });
                 break;
@@ -172,9 +184,10 @@ public class Health : MonoBehaviour
             case "Rogue":
                 actions.Add(new CharacterAction("Knife Throw", (user, target) =>
                 {
-                    int damage = 10;
-                    target.TakeDamage(damage);
-                    Debug.Log($"{user.characterName} throws a knife at {target.characterName} for {damage} damage!");
+                    int baseDamage = 10;
+                    int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
+                    target.TakeDamage(finalDamage);
+                    Debug.Log($"{user.characterName} throws a knife at {target.characterName} for {finalDamage} damage!");
                     TriggerAnimatic(user, target);
                 }) { requiresTarget = true });
 
@@ -191,7 +204,7 @@ public class Health : MonoBehaviour
                     int healAmount = Mathf.FloorToInt(user.maxHealth * 0.1f); //10% of their health
                     user.Heal(healAmount);
                     Debug.Log($"{user.characterName} heals themself for {healAmount} HP!");
-                    TriggerAnimatic(user, null);
+                    //TriggerAnimatic(user, null);
                 }) { requiresTarget = false });
                 break;
 
@@ -214,6 +227,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (activeBuffs.ContainsKey(BuffType.DefenseBoost))
+        {
+            damage = Mathf.FloorToInt(damage * 0.5f); // 50% damage reduction
+        }
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         Debug.Log(characterName + " took " + damage + " damage. Remaining HP: " + currentHealth);
@@ -223,6 +241,7 @@ public class Health : MonoBehaviour
             Die();
         }
     }
+
 
     private IEnumerator ApplyFlamingDamageOverTime(Health target)
     {
@@ -270,6 +289,12 @@ public class Health : MonoBehaviour
             activeBuffs[type] = duration;
         else
             activeBuffs.Add(type, duration);
+        
+        if (type == BuffType.DefenseBoost)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.color = Color.cyan;
+        }
     }
 
     public void TickBuffs()
@@ -278,8 +303,31 @@ public class Health : MonoBehaviour
         foreach (var key in keys)
         {
             activeBuffs[key]--;
+
             if (activeBuffs[key] <= 0)
+            {
                 activeBuffs.Remove(key);
+
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    if (key == BuffType.Invisibility)
+                    {
+                        sr.color = new Color(1f, 1f, 1f, 1f); // Fully visible
+                    }
+                    else if (key == BuffType.DefenseBoost)
+                    {
+                        sr.color = Color.white; // Reset color
+                    }
+                }
+            }
         }
     }
+
+
+    public float GetDamageMultiplier()
+    {
+        return activeBuffs.ContainsKey(BuffType.DamageBoost) ? 2f : 1f;
+    }
+
 }
