@@ -272,7 +272,13 @@ public class Health : MonoBehaviour
     {
         Debug.Log(characterName + " has died!");
 
-
+        if (CompareTag("Enemy"))
+        {
+            if (LevelManager.Instance == null)
+                Debug.LogWarning("LevelManager.Instance is null!");
+            else
+                LevelManager.Instance.CheckIfEnemiesDefeated();
+        }
         gameObject.SetActive(false);
 
        
@@ -286,11 +292,6 @@ public class Health : MonoBehaviour
         {
             tm.RemoveFromTurnOrder(this);
         }
-        if (CompareTag("Enemy"))
-        {
-            LevelManager.Instance.CheckIfEnemiesDefeated();
-        }
-        
     }
 
     public void ApplyBuff(BuffType type, int duration)

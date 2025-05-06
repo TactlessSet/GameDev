@@ -40,7 +40,8 @@ public class LevelManager : MonoBehaviour
     {
         bool allDead = true;
 
-        foreach (Health enemy in enemyWaves[currentLevel].GetComponentsInChildren<Health>())
+        int checkingIndex = Mathf.Clamp(currentLevel - 1, 0, enemyWaves.Count - 1);
+        foreach (Health enemy in enemyWaves[checkingIndex].GetComponentsInChildren<Health>())
         {
             if (enemy.currentHealth > 0 && enemy.CompareTag("Enemy"))
             {
