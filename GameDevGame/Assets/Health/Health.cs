@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     public List<CharacterAction> actions = new List<CharacterAction>();
 
-    public enum BuffType { DamageBoost, Invisibility, DefenseBoost}
+    public enum BuffType { DamageBoost, Invisibility, DefenseBoost, Immunity}
     public Dictionary<BuffType, int> activeBuffs = new Dictionary<BuffType, int>();
 
     void Awake()
@@ -100,7 +100,7 @@ public class Health : MonoBehaviour
                 actions.Add(new CharacterAction("Crossbow FIRE", (user, target) =>
                 {
                     target.ApplyBuff(BuffType.DamageBoost, 5);
-                    StartCoroutine(ApplyFlamingDamageOverTime(target));
+                    user.StartCoroutine(user.ApplyFlamingDamageOverTime(target));
                     Debug.Log($"{user.characterName} fires a flaming arrow at {target.characterName}!");
                     TriggerAnimatic(user, target);
                 }) { requiresTarget = true });
@@ -128,7 +128,7 @@ public class Health : MonoBehaviour
 {
                 foreach (var member in FindObjectsOfType<Health>())
                 {
-                    if (member != user)
+                    if (member != user && member.CompareTag("Ally"))
                     {
                         member.ApplyBuff(BuffType.DamageBoost, 1);
                     }
@@ -146,7 +146,7 @@ public class Health : MonoBehaviour
                     {
                         if (ally.CompareTag("Ally"))
                         {
-                            ally.ApplyBuff(BuffType.DamageBoost, 2);//change buff type later
+                            ally.ApplyBuff(BuffType.Immunity, 2);//change buff type later
                             Debug.Log($"{user.characterName} makes {ally.characterName} immune to debuffs for 2 rounds!");
                         }
                     }
@@ -253,6 +253,12 @@ public class Health : MonoBehaviour
             Debug.Log($"{target.characterName} is burned by the flaming arrow! 2 damage.");
         }
     }
+    
+    public bool IsImmuneTo(BuffType buff)
+    {
+        return activeBuffs.ContainsKey(BuffType.Immunity) && buff != BuffType.Immunity;
+    }
+
 
     public void Heal(int amount)
     {
@@ -280,11 +286,20 @@ public class Health : MonoBehaviour
         {
             tm.RemoveFromTurnOrder(this);
         }
+        if (CompareTag("Enemy"))
+        {
+            LevelManager.Instance.CheckIfEnemiesDefeated();
+        }
         
     }
 
     public void ApplyBuff(BuffType type, int duration)
     {
+        if (IsImmuneTo(type))
+        {
+            Debug.Log($"{characterName} is immune to {type} and resisted the effect.");
+            return;
+        }
         if (activeBuffs.ContainsKey(type))
             activeBuffs[type] = duration;
         else

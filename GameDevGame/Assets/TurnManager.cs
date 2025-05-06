@@ -17,8 +17,7 @@ public class TurnManager : MonoBehaviour
 
     void Start()
     {
-        turnOrder.Clear(); //more of a debug thing than anything; not necessary
-        
+        turnOrder.Clear();
         turnOrder.AddRange(partyMembers);
         turnOrder.AddRange(enemies);
         ContinueTurnCycle();
@@ -28,20 +27,21 @@ public class TurnManager : MonoBehaviour
     {
         if (turnOrder.Count == 0)
         {
-            Debug.LogError("No combatants found.");
+            Debug.LogError("No combatants in turn order.");
             return;
         }
 
         if (turnIndex >= turnOrder.Count)
         {
-            turnIndex = 0; 
+            turnIndex = 0;
         }
 
         Health current = turnOrder[turnIndex];
 
-        //skip dead
-        if (current.currentHealth <= 0)
+        // Skip dead characters
+        if (current == null || current.currentHealth <= 0)
         {
+            Debug.Log($"{(current != null ? current.characterName : "NULL")} is dead or null. Skipping.");
             turnIndex++;
             ContinueTurnCycle();
             return;
@@ -50,14 +50,32 @@ public class TurnManager : MonoBehaviour
         if (partyMembers.Contains(current))
         {
             Debug.Log($"It's {current.characterName}'s turn (Player)!");
-            FindObjectOfType<PlayerCombatController>().EnableActionPanel();
+            FindObjectOfType<PlayerCombatController>()?.EnableActionPanel();
         }
-
         else if (enemies.Contains(current))
         {
             Debug.Log($"It's {current.characterName}'s turn (Enemy)!");
             StartCoroutine(EnemyAct(current));
         }
+    }
+
+    public void OnPartyMemberActed()
+    {
+        var lastActor = turnOrder[turnIndex];
+        lastActor?.TickBuffs();
+        NextTurn();
+    }
+
+    void NextTurn()
+    {
+        if (turnOrder.Count == 0)
+        {
+            Debug.Log("Combat has ended or all characters are dead.");
+            return;
+        }
+
+        turnIndex = (turnIndex + 1) % turnOrder.Count;
+        ContinueTurnCycle();
     }
 
     public void RemoveFromTurnOrder(Health deadCharacter)
@@ -74,71 +92,42 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    void NextTurn()
-    {
-        if (turnOrder.Count == 0)
-        {
-            Debug.Log("All characters have died!");
-            return;
-        }
-
-        turnIndex = (turnIndex + 1) % turnOrder.Count;
-        ContinueTurnCycle();
-    }
-
-
     public Health GetCurrentPartyMember()
     {
-        if (turnIndex < turnOrder.Count && partyMembers.Contains(turnOrder[turnIndex]))
+        if (turnIndex < turnOrder.Count)
         {
-            return turnOrder[turnIndex];
+            Health current = turnOrder[turnIndex];
+            if (partyMembers.Contains(current))
+            {
+                return current;
+            }
         }
 
         return null;
     }
 
-
-   public void OnPartyMemberActed()
-    {
-        var lastActor = turnOrder[turnIndex];
-        lastActor.GetComponent<Health>().TickBuffs(); // Tick buffs after action
-
-        turnIndex = (turnIndex + 1) % turnOrder.Count; // Ensure turnIndex wraps around
-        ContinueTurnCycle(); // Continue to the next turn
-    }
-
-
-    //enemy shtuffs
     IEnumerator EnemyAct(Health enemy)
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
 
         List<Health> validTargets = partyMembers.FindAll(p =>
-        p.currentHealth > 0 &&
-        (!p.activeBuffs.ContainsKey(Health.BuffType.Invisibility))
+            p.currentHealth > 0 &&
+            !p.activeBuffs.ContainsKey(Health.BuffType.Invisibility)
         );
+
         if (validTargets.Count > 0)
         {
             Health target = validTargets[Random.Range(0, validTargets.Count)];
             Debug.Log($"{enemy.characterName} attacks {target.characterName}");
-
             target.TakeDamage(30);
-            //TriggerAnimatic(enemy, target);
-
             yield return new WaitForSeconds(1f);
         }
-
-        turnIndex++;
-        ContinueTurnCycle();
-    }
-
-    /*private void TriggerAnimatic(Health attacker, Health victim)
-    {
-        Sprite attackerSprite = attacker.combatSprite;
-        Sprite victimSprite = victim != null ? victim.combatSprite : null;
-        if (PlayerCombatController.Instance.animaticUI != null)
+        else
         {
-            PlayerCombatController.Instance.animaticUI.PlayAnimatic(attackerSprite, victimSprite);
+            Debug.Log($"{enemy.characterName} has no visible targets.");
         }
-    } */
+
+        enemy.TickBuffs();
+        NextTurn();
+    }
 }
