@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Sprite combatSprite;
+
+    public GameObject healthBar;  
+    public TextMeshProUGUI healthText;
+
 
     public List<CharacterAction> actions = new List<CharacterAction>();
 
@@ -60,14 +65,14 @@ public class Health : MonoBehaviour
                     }
                 }) { requiresTarget = true });
 
-                actions.Add(new CharacterAction("Invisibility Cloak", (user, target) =>
+                actions.Add(new CharacterAction("Cast Cloak", (user, target) =>
                 {
-                    user.ApplyBuff(BuffType.Invisibility, 2);
-                    Debug.Log($"{user.characterName} becomes invisible!");
-                    TriggerAnimatic(user, null);
+                    target.ApplyBuff(BuffType.Invisibility, 2);
+                    Debug.Log($"{target.characterName} becomes invisible!");
+                    TriggerAnimatic(user, target);
                     TurnManager.Instance.OnPartyMemberActed();  
                     //"invisible"
-                    SpriteRenderer spriteRenderer = user.GetComponent<SpriteRenderer>();
+                    SpriteRenderer spriteRenderer = target.GetComponent<SpriteRenderer>();
                     if (spriteRenderer != null)
                     {
                         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
@@ -76,17 +81,17 @@ public class Health : MonoBehaviour
                     {
                         Debug.LogWarning($"{user.characterName} has no SpriteRenderer!");
                     }
-                }) { requiresTarget = false });
+                }) { requiresTarget = true });
                 break;
 
             case "Knight":
                 actions.Add(new CharacterAction("Shield", (user, target) =>
                 {
-                    user.ApplyBuff(BuffType.DefenseBoost, 2);
-                    Debug.Log($"{user.characterName} shields themself!");
-                    TriggerAnimatic(user, null);
+                    target.ApplyBuff(BuffType.DefenseBoost, 2);
+                    Debug.Log($"{user.characterName} shields their party member!");
+                    TriggerAnimatic(user, target);
                     TurnManager.Instance.OnPartyMemberActed();
-                }) { requiresTarget = false });
+                }) { requiresTarget = true });
 
                 actions.Add(new CharacterAction("Crossbow Shot", (user, target) =>
                 {
@@ -136,7 +141,7 @@ public class Health : MonoBehaviour
                 Debug.Log($"{user.characterName} rallies the troops, doubling damage for the next round!");
                 TriggerAnimatic(user, null);
                 TurnManager.Instance.OnPartyMemberActed();
-                }) { requiresTarget = false });
+                }) { requiresTarget = true });
                 break;
 
             case "Healer":
@@ -194,10 +199,10 @@ public class Health : MonoBehaviour
                 actions.Add(new CharacterAction("Cloak", (user, target) =>
                 {
                     //cloak for 2 turns
-                    user.ApplyBuff(BuffType.Invisibility, 2); //need to add buff and effects 
-                    Debug.Log($"{user.characterName} cloaks themself and becomes untargetable for 2 turns!");
+                    target.ApplyBuff(BuffType.Invisibility, 2);
+                    Debug.Log($"{user.characterName} cloaks their party member, making them untargetable for 2 turns!");
                     TriggerAnimatic(user, null);
-                }) { requiresTarget = false });
+                }) { requiresTarget = true });
 
                 actions.Add(new CharacterAction("Heal Self", (user, target) =>
                 {
@@ -274,24 +279,18 @@ public class Health : MonoBehaviour
 
         if (CompareTag("Enemy"))
         {
-            if (LevelManager.Instance == null)
-                Debug.LogWarning("LevelManager.Instance is null!");
-            else
-                LevelManager.Instance.CheckIfEnemiesDefeated();
+        LevelManager.Instance.CheckIfEnemiesDefeated();
         }
-        gameObject.SetActive(false);
-
        
-        
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = Color.gray;
 
-        this.enabled = false;
         TurnManager tm = FindObjectOfType<TurnManager>();
         if (tm != null)
         {
             tm.RemoveFromTurnOrder(this);
         }
+        healthBar.SetActive(false);
+        healthText.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void ApplyBuff(BuffType type, int duration)

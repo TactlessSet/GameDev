@@ -7,6 +7,7 @@ public class TurnManager : MonoBehaviour
     public List<Health> partyMembers;
     public List<Health> enemies;
     public static TurnManager Instance;
+    public GameObject turnIndicator;
     private List<Health> turnOrder = new List<Health>();
     private int turnIndex = 0;
 
@@ -51,10 +52,16 @@ public class TurnManager : MonoBehaviour
         {
             Debug.Log($"It's {current.characterName}'s turn (Player)!");
             FindObjectOfType<PlayerCombatController>()?.EnableActionPanel();
+
+            turnIndicator.SetActive(true);
+            Vector3 offset = new Vector3(0, -1f, 0);
+            turnIndicator.transform.position = current.transform.position + offset;
+
         }
         else if (enemies.Contains(current))
         {
             Debug.Log($"It's {current.characterName}'s turn (Enemy)!");
+            if (turnIndicator != null) turnIndicator.SetActive(false);
             StartCoroutine(EnemyAct(current));
         }
     }

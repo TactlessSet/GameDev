@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10840c976eabaef4594fc83171074acc
+guid: 2fb7916bc25fabf498d8d3d4daedf4f2
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: PlayerIdleNew
+  - name: TurnIndicator
     originalName: 
-    pivot: {x: 0.61904764, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 21
-      height: 50
-    spriteID: e7d252618c96e1b4ab02ecab97d44b30
+      width: 64
+      height: 33
+    spriteID: 70f98676093524342baad59b37860aad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,21 +144,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -197812369
-    name: PlayerIdleNew
+    guid: 2104652166
+    name: TurnIndicator
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: PlayerIdleNew
+    - name: TurnIndicator
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 19
+        x: 0
         y: 0
-        width: 21
-        height: 50
-      spriteId: e7d252618c96e1b4ab02ecab97d44b30
+        width: 64
+        height: 33
+      spriteId: 70f98676093524342baad59b37860aad
     linkedCells: []
     parentIndex: -1
   platformSettings: []
