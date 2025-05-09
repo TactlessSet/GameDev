@@ -25,7 +25,7 @@ public class CharacterAction
         }
         if (requiresTarget && target == null)
         {
-            Debug.LogError("Target is required but is null.");
+            Debug.LogError("target is required but is null.");
             return;
         }
 
@@ -33,14 +33,13 @@ public class CharacterAction
 
         if (AttackAnimaticUI.Instance != null)
         {
-            Debug.Log("Calling PlayAnimatic...");
             Sprite attackerSprite = user.combatSprite;
             Sprite victimSprite = target != null ? target.combatSprite : null;
             AttackAnimaticUI.Instance.PlayAnimatic(attackerSprite, victimSprite);
         }
         else
         {
-            Debug.LogWarning("AttackAnimaticUI.Instance is null!");
+            Debug.LogWarning("Attackanimatic null");
         }
     }
 }

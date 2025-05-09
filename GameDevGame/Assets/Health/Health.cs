@@ -114,7 +114,7 @@ public class Health : MonoBehaviour
             case "Swordsman":
                 actions.Add(new CharacterAction("Big Slash", (user, target) =>
                 {
-                    int baseDamage = 30;
+                    int baseDamage = 100;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage); // High damage value
                     Debug.Log($"{user.characterName} performs a Big Slash on {target.characterName}!");
@@ -234,7 +234,7 @@ public class Health : MonoBehaviour
     {
         if (activeBuffs.ContainsKey(BuffType.DefenseBoost))
         {
-            damage = Mathf.FloorToInt(damage * 0.5f); // 50% damage reduction
+            damage = Mathf.FloorToInt(damage * 0.5f); //50% damage reduction
         }
 
         currentHealth -= damage;
@@ -277,10 +277,11 @@ public class Health : MonoBehaviour
     {
         Debug.Log(characterName + " has died!");
 
-        if (CompareTag("Enemy"))
-        {
+    // if (CompareTag("Enemy"))
+    // {
+        Debug.Log("Calling CheckIfEnemiesDefeated() forcibly");
         LevelManager.Instance.CheckIfEnemiesDefeated();
-        }
+    // }
        
 
         TurnManager tm = FindObjectOfType<TurnManager>();

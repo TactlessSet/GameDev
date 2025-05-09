@@ -10178,7 +10178,7 @@ GameObject:
   - component: {fileID: 1886824485}
   - component: {fileID: 1886824484}
   - component: {fileID: 1886824483}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: VictoryScreenCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

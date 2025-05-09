@@ -32,9 +32,6 @@ public class AttackAnimaticUI : MonoBehaviour
 
     public void PlayAnimatic(Sprite attacker, Sprite victim)
     {
-        Debug.Log("PlayAnimatic called");
-
-       
         attackerImage.sprite = attacker;
         victimImage.sprite = victim;
 

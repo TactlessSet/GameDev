@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
 
     public void CheckIfEnemiesDefeated()
     {
+        Debug.Log("CheckIfEnemiesDefeated() was called");
         int checkingIndex = Mathf.Clamp(currentLevel - 1, 0, enemyWaves.Count - 1);
         Debug.Log($"Checking enemies in wave index: {checkingIndex}");
 
@@ -68,6 +69,7 @@ public class LevelManager : MonoBehaviour
 
     private void ShowVictoryScreen()
     {
+        Debug.Log("Displaying vicyory screen...");
         victoryScreen.SetActive(true);
     }
 
