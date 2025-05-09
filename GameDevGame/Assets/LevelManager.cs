@@ -38,13 +38,21 @@ public class LevelManager : MonoBehaviour
 
     public void CheckIfEnemiesDefeated()
     {
+        int checkingIndex = Mathf.Clamp(currentLevel - 1, 0, enemyWaves.Count - 1);
+        Debug.Log($"Checking enemies in wave index: {checkingIndex}");
+
         bool allDead = true;
 
-        int checkingIndex = Mathf.Clamp(currentLevel - 1, 0, enemyWaves.Count - 1);
-        foreach (Health enemy in enemyWaves[checkingIndex].GetComponentsInChildren<Health>())
+        var enemies = enemyWaves[checkingIndex].GetComponentsInChildren<Health>();
+        Debug.Log($"Enemies found: {enemies.Length}");
+
+        foreach (Health enemy in enemies)
         {
+            Debug.Log($"Checking {enemy.characterName} with health {enemy.currentHealth}");
+
             if (enemy.currentHealth > 0 && enemy.CompareTag("Enemy"))
             {
+                Debug.Log($"{enemy.characterName} is still alive.");
                 allDead = false;
                 break;
             }
@@ -56,6 +64,7 @@ public class LevelManager : MonoBehaviour
             ShowVictoryScreen();
         }
     }
+
 
     private void ShowVictoryScreen()
     {
@@ -81,6 +90,7 @@ public class LevelManager : MonoBehaviour
             ShowGameOverScreen();
         }
     }
+
 
     private void ShowGameOverScreen()
     {
