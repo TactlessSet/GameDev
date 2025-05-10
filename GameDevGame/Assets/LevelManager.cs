@@ -30,9 +30,14 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         StartNextLevel();
-        continueButton.onClick.AddListener(() => {
+
+        continueButton.onClick.AddListener(() =>
+        {
             victoryScreen.SetActive(false);
+            currentLevel++;
             StartNextLevel();
+
+            
         });
     }
 
@@ -66,25 +71,31 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
     private void ShowVictoryScreen()
     {
-        Debug.Log("Displaying vicyory screen...");
+        Debug.Log("Displaying victory screen...");
         victoryScreen.SetActive(true);
     }
 
     public void StartNextLevel()
     {
+        foreach (var wave in enemyWaves)
+        {
+            wave.SetActive(false);
+        }
+
         if (currentLevel < enemyWaves.Count)
         {
-            enemyWaves[currentLevel].SetActive(true);
+            GameObject wave = enemyWaves[currentLevel];
+            wave.SetActive(true);
+
+            EnableEnemyUIInWave(wave);
 
             if (currentLevel == enemyWaves.Count - 1)
             {
                 Debug.Log("Boss wave starting!");
             }
 
-            currentLevel++;
         }
         else
         {
@@ -93,11 +104,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void EnableEnemyUIInWave(GameObject wave)
+    {
+        var healthComponents = wave.GetComponentsInChildren<Health>(true);
+
+        foreach (var health in healthComponents)
+        {
+            if (health.healthBar != null)
+                health.healthBar.SetActive(true);
+
+            if (health.healthText != null)
+                health.healthText.gameObject.SetActive(true);
+        }
+    }
 
     private void ShowGameOverScreen()
     {
         Debug.Log("Game complete!");
-        //need to add a screen, of course
+        //do later
     }
-
 }
