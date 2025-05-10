@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
                 {
                     if (target.CompareTag("Enemy"))
                     {
-                        int baseDamage = 100;
+                        int baseDamage = 15;
                         int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                         target.TakeDamage(finalDamage);
                         Debug.Log($"{user.characterName} casts Magic Ball at {target.characterName}!");
@@ -114,7 +114,7 @@ public class Health : MonoBehaviour
             case "Swordsman":
                 actions.Add(new CharacterAction("Big Slash", (user, target) =>
                 {
-                    int baseDamage = 100;
+                    int baseDamage = 30;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage); // High damage value
                     Debug.Log($"{user.characterName} performs a Big Slash on {target.characterName}!");
