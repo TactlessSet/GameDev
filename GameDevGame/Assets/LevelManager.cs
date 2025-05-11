@@ -110,13 +110,17 @@ public class LevelManager : MonoBehaviour
 
         foreach (var health in healthComponents)
         {
-            if (health.healthBar != null)
-                health.healthBar.SetActive(true);
+            if (health.gameObject.activeInHierarchy)
+            {
+                if (health.healthBar != null)
+                    health.healthBar.SetActive(true);
 
-            if (health.healthText != null)
-                health.healthText.gameObject.SetActive(true);
+                if (health.healthText != null)
+                    health.healthText.gameObject.SetActive(true);
+            }
         }
     }
+
 
     private void ShowGameOverScreen()
     {
