@@ -1,16 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
     public GameObject victoryScreen;
+    public GameObject gameOverScreen;
     public Button continueButton;
+    public Button returnButton;
+    public List<GameObject> enemyWaves;
 
     private int currentLevel = 0;
-    public List<GameObject> enemyWaves;
+    private GameObject currentWaveObject;
 
     private void Awake()
     {
@@ -29,36 +33,62 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        StartNextLevel();
+        continueButton.onClick.AddListener(OnContinuePressed);
+        StartCurrentLevel();
+    }
 
-        continueButton.onClick.AddListener(() =>
+    private void OnContinuePressed()
+    {
+        victoryScreen.SetActive(false);
+        currentLevel++;
+        StartCurrentLevel();
+    }
+
+    public void OnReturnButtonPressed()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    private void StartCurrentLevel()
+    {
+        if (currentLevel >= enemyWaves.Count)
         {
-            victoryScreen.SetActive(false);
-            currentLevel++;
-            StartNextLevel();
+            Debug.Log("All levels complete. Game Over.");
+            ShowGameOverScreen();
+            return;
+        }
 
-            
-        });
+        DisableAllEnemyUI();
+        foreach (var wave in enemyWaves)
+        {
+            wave.SetActive(false);
+        }
+
+        currentWaveObject = enemyWaves[currentLevel];
+        currentWaveObject.SetActive(true);
+        EnableEnemyUIInWave(currentWaveObject);
+
+        if (currentLevel == enemyWaves.Count - 1)
+        {
+            Debug.Log("Boss wave starting!");
+        }
     }
 
     public void CheckIfEnemiesDefeated()
     {
-        Debug.Log("CheckIfEnemiesDefeated() was called");
-        int checkingIndex = Mathf.Clamp(currentLevel - 1, 0, enemyWaves.Count - 1);
-        Debug.Log($"Checking enemies in wave index: {checkingIndex}");
+        if (currentWaveObject == null)
+        {
+            Debug.LogWarning("No current wave to check!");
+            return;
+        }
 
         bool allDead = true;
-
-        var enemies = enemyWaves[checkingIndex].GetComponentsInChildren<Health>();
-        Debug.Log($"Enemies found: {enemies.Length}");
+        var enemies = currentWaveObject.GetComponentsInChildren<Health>(true);
 
         foreach (Health enemy in enemies)
         {
-            Debug.Log($"Checking {enemy.characterName} with health {enemy.currentHealth}");
-
             if (enemy.currentHealth > 0 && enemy.CompareTag("Enemy"))
             {
-                Debug.Log($"{enemy.characterName} is still alive.");
                 allDead = false;
                 break;
             }
@@ -77,37 +107,31 @@ public class LevelManager : MonoBehaviour
         victoryScreen.SetActive(true);
     }
 
-    public void StartNextLevel()
+    private void ShowGameOverScreen()
+    {
+        Debug.Log("Game complete!");
+        gameOverScreen.SetActive(true);
+    }
+
+    private void DisableAllEnemyUI()
     {
         foreach (var wave in enemyWaves)
         {
-            wave.SetActive(false);
-        }
-
-        if (currentLevel < enemyWaves.Count)
-        {
-            GameObject wave = enemyWaves[currentLevel];
-            wave.SetActive(true);
-
-            EnableEnemyUIInWave(wave);
-
-            if (currentLevel == enemyWaves.Count - 1)
+            var healthComponents = wave.GetComponentsInChildren<Health>(true);
+            foreach (var health in healthComponents)
             {
-                Debug.Log("Boss wave starting!");
-            }
+                if (health.healthBar != null)
+                    health.healthBar.SetActive(false);
 
-        }
-        else
-        {
-            Debug.Log("All levels complete. Game Over.");
-            ShowGameOverScreen();
+                if (health.healthText != null)
+                    health.healthText.gameObject.SetActive(false);
+            }
         }
     }
 
     private void EnableEnemyUIInWave(GameObject wave)
     {
         var healthComponents = wave.GetComponentsInChildren<Health>(true);
-
         foreach (var health in healthComponents)
         {
             if (health.gameObject.activeInHierarchy)
@@ -119,12 +143,5 @@ public class LevelManager : MonoBehaviour
                     health.healthText.gameObject.SetActive(true);
             }
         }
-    }
-
-
-    private void ShowGameOverScreen()
-    {
-        Debug.Log("Game complete!");
-        //do later
     }
 }

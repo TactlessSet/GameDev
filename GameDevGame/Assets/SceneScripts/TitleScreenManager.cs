@@ -8,4 +8,9 @@ public class TitleScreenManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    public void OnQuitPressed()
+    {
+        Application.Quit();
+    }
 }
