@@ -97,7 +97,7 @@ public class LevelManager : MonoBehaviour
         if (allDead)
         {
             Debug.Log("Wave cleared!");
-            ShowVictoryScreen();
+            ShowGameOverScreen();
         }
     }
 
