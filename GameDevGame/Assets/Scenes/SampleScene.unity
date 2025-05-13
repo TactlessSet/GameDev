@@ -495,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 63163937}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.27, y: -4.19, z: 0}
+  m_LocalPosition: {x: 7.27, y: -4.456806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -542,7 +542,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: 2004210339499259965, guid: 07723d7f9af7c4844b0dad75733d4e13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -582,7 +582,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: 2004210339499259965, guid: 07723d7f9af7c4844b0dad75733d4e13, type: 3}
   healthBar: {fileID: 1294386489}
   healthText: {fileID: 327268638}
   actions: []
@@ -621,8 +621,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.7368421, y: 0}
+    oldSize: {x: 0.19, y: 0.63}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -785,6 +785,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1510668972465208562, guid: 8047b701742e608438c289eb9f432b02, type: 3}
     - target: {fileID: 7878350319992209165, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -803,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1231937
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1455,7 +1459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 455.5, y: -222.8}
+  m_AnchoredPosition: {x: 455.5, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &208373863
@@ -1625,7 +1629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.100006, y: -222.8}
+  m_AnchoredPosition: {x: -17.100006, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224472579
@@ -1759,7 +1763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307, y: -222.8}
+  m_AnchoredPosition: {x: 307, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240199722
@@ -2004,7 +2008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 389, y: -222.8}
+  m_AnchoredPosition: {x: 389, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262218261
@@ -2178,7 +2182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.91
+      value: -4.1768064
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: b305954200f9bc14795c177813c67df9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2260,7 +2264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 471, y: -222.8}
+  m_AnchoredPosition: {x: 471, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327268638
@@ -3068,7 +3072,7 @@ MonoBehaviour:
   characterName: Goblin 2
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: 1510668972465208562, guid: 8047b701742e608438c289eb9f432b02, type: 3}
   healthBar: {fileID: 1879523985}
   healthText: {fileID: 208373863}
   actions: []
@@ -3107,8 +3111,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.4864865, y: 0}
+    oldSize: {x: 0.37, y: 0.48}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3172,7 +3176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84.099945, y: -212}
+  m_AnchoredPosition: {x: -84.099945, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625015603
@@ -3274,7 +3278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334.3, y: -222.3}
+  m_AnchoredPosition: {x: -334.3, y: -235.6403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &642456494
@@ -3410,7 +3414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 288, y: -212}
+  m_AnchoredPosition: {x: 288, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654925020
@@ -3591,7 +3595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -4.166806
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 5381d41846adbad4491acf08d06d3a23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3702,7 +3706,7 @@ Transform:
   m_GameObject: {fileID: 696131493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.45, y: -4.19, z: 0}
+  m_LocalPosition: {x: 2.45, y: -4.456806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3749,12 +3753,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: 5557805817247095819, guid: 08148dde859331e4b8e87179b9a76d64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.34, y: 0.5}
+  m_Size: {x: 0.21, y: 0.49}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3789,7 +3793,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: 5557805817247095819, guid: 08148dde859331e4b8e87179b9a76d64, type: 3}
   healthBar: {fileID: 1036405932}
   healthText: {fileID: 1900317350}
   actions: []
@@ -3828,9 +3832,9 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
-    newSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.52380955, y: 0}
+    oldSize: {x: 0.21, y: 0.49}
+    newSize: {x: 0.21, y: 0.49}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -3910,7 +3914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.000002, y: -212}
+  m_AnchoredPosition: {x: 26.000002, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728487056
@@ -5355,7 +5359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 87, y: -222.8}
+  m_AnchoredPosition: {x: 87, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018973957
@@ -5537,7 +5541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 161, y: -212}
+  m_AnchoredPosition: {x: 161, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036405934
@@ -5662,7 +5666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3265903235963803663, guid: b30b37872dc5e5d43a8e8dcc2e8675b0, type: 3}
+  m_Sprite: {fileID: 2136984808399464581, guid: 12f6d66b559d7424db48751d3cf7e36a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5716,7 +5720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 386, y: -212}
+  m_AnchoredPosition: {x: 386, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056852202
@@ -5871,14 +5875,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8822107, b: 0.33490568, a: 0.70980394}
+  m_Color: {r: 0.0044499086, g: 0.057623, b: 0.4716981, a: 0.6509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3265903235963803663, guid: b30b37872dc5e5d43a8e8dcc2e8675b0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5925,7 +5929,7 @@ Transform:
   m_GameObject: {fileID: 1071867207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.06, y: -4.2, z: 0}
+  m_LocalPosition: {x: 3.06, y: -4.466806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5972,7 +5976,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: -781163995311908105, guid: e67ecd6f8c05c3e438a62ca3103cbe46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6012,7 +6016,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: -781163995311908105, guid: e67ecd6f8c05c3e438a62ca3103cbe46, type: 3}
   healthBar: {fileID: 1851928847}
   healthText: {fileID: 1848899576}
   actions: []
@@ -6051,8 +6055,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.5357143, y: 0}
+    oldSize: {x: 0.28, y: 0.52}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6192,7 +6196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 327, y: -212}
+  m_AnchoredPosition: {x: 327, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097334236
@@ -6296,7 +6300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 260.5, y: -212}
+  m_AnchoredPosition: {x: 260.5, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105752423
@@ -7077,7 +7081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -189.1, y: -212}
+  m_AnchoredPosition: {x: -189.1, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251625612
@@ -7217,7 +7221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 408, y: -212}
+  m_AnchoredPosition: {x: 408, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294386491
@@ -7441,7 +7445,7 @@ Transform:
   m_GameObject: {fileID: 1352477307}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.68, y: -4.19, z: 0}
+  m_LocalPosition: {x: 5.68, y: -4.456806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7488,7 +7492,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: -6175661071116450179, guid: 1db6bfa906670384ea044142055c4d9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7528,7 +7532,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: -6175661071116450179, guid: 1db6bfa906670384ea044142055c4d9d, type: 3}
   healthBar: {fileID: 1097334234}
   healthText: {fileID: 262218261}
   actions: []
@@ -7567,8 +7571,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.46875, y: 0}
+    oldSize: {x: 0.32, y: 0.56}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7611,7 +7615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 324.5, y: -222.8}
+  m_AnchoredPosition: {x: 324.5, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357969949
@@ -7902,7 +7906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -227, y: -222.8}
+  m_AnchoredPosition: {x: -227, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452271189
@@ -8314,7 +8318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -395, y: -212}
+  m_AnchoredPosition: {x: -395, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526159936
@@ -8875,7 +8879,7 @@ Transform:
   m_GameObject: {fileID: 1609776738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.97, y: -4.2, z: 0}
+  m_LocalPosition: {x: 6.97, y: -4.466806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8922,7 +8926,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: -6263242934949485037, guid: af2ef4692e835d44fbe35264461f7b29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8962,7 +8966,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: -6263242934949485037, guid: af2ef4692e835d44fbe35264461f7b29, type: 3}
   healthBar: {fileID: 1056852200}
   healthText: {fileID: 1863550155}
   actions: []
@@ -9001,8 +9005,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.4615385, y: 0}
+    oldSize: {x: 0.13, y: 0.44}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9510,7 +9514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -288.7, y: -212}
+  m_AnchoredPosition: {x: -288.7, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659979144
@@ -9690,7 +9694,7 @@ Transform:
   m_GameObject: {fileID: 1689238939}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.08, y: -4.21, z: 0}
+  m_LocalPosition: {x: 4.08, y: -4.476806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9737,7 +9741,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: -3167057280200405097, guid: c941b956596365a49bbb4d8954f37449, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9777,7 +9781,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: -3167057280200405097, guid: c941b956596365a49bbb4d8954f37449, type: 3}
   healthBar: {fileID: 1959756615}
   healthText: {fileID: 240199722}
   actions: []
@@ -9816,8 +9820,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.6086957, y: 0}
+    oldSize: {x: 0.23, y: 0.33}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9880,7 +9884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.92
+      value: -4.186806
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e0ce627ef6b955b46a90ef9eceb0eb4f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10096,7 +10100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.100006, y: -222.8}
+  m_AnchoredPosition: {x: -126.100006, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734935371
@@ -10380,7 +10384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: -222.8}
+  m_AnchoredPosition: {x: 350, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772393092
@@ -10756,7 +10760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 246, y: -222.8}
+  m_AnchoredPosition: {x: 246, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848899576
@@ -10892,7 +10896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 183, y: -212}
+  m_AnchoredPosition: {x: 183, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851928849
@@ -11187,7 +11191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 449.2, y: -222.8}
+  m_AnchoredPosition: {x: 449.2, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863550155
@@ -11323,7 +11327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.5, y: -212}
+  m_AnchoredPosition: {x: 392.5, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879523987
@@ -11529,7 +11533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: -222.8}
+  m_AnchoredPosition: {x: 222, y: -236.1403}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900317350
@@ -11984,7 +11988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.93
+      value: -4.196806
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 6067c8de7c4e56344b62f41e42660357, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12068,7 +12072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 245, y: -212}
+  m_AnchoredPosition: {x: 245, y: -225.3403}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959756617
@@ -12341,7 +12345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1231937
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12439,7 +12443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 0a61a83afa4807b4b814bd1a0e3f7f26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -4.166806
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 0a61a83afa4807b4b814bd1a0e3f7f26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12516,7 +12520,7 @@ Transform:
   m_GameObject: {fileID: 2076423659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.99, y: -4.17, z: 0}
+  m_LocalPosition: {x: 4.99, y: -4.436806, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12563,7 +12567,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  m_Sprite: {fileID: 5102519139473352323, guid: 28d4e1556c99ba242ac8b584e1700e85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12603,7 +12607,7 @@ MonoBehaviour:
   characterName: Goblin
   maxHealth: 100
   currentHealth: 100
-  combatSprite: {fileID: -2973070006187248452, guid: 7924e12d1d54f2e43a5994299eab125a, type: 3}
+  combatSprite: {fileID: 5102519139473352323, guid: 28d4e1556c99ba242ac8b584e1700e85, type: 3}
   healthBar: {fileID: 654925018}
   healthText: {fileID: 1772393092}
   actions: []
@@ -12642,8 +12646,8 @@ BoxCollider2D:
   m_Offset: {x: 0.040000007, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.38235295, y: 0}
-    oldSize: {x: 0.34, y: 0.5}
+    pivot: {x: 0.5882353, y: 0}
+    oldSize: {x: 0.17, y: 0.43}
     newSize: {x: 0.34, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

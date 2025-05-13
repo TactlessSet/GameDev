@@ -61,7 +61,7 @@ public class TurnManager : MonoBehaviour
             FindObjectOfType<PlayerCombatController>()?.EnableActionPanel();
 
             turnIndicator.SetActive(true);
-            Vector3 offset = new Vector3(0, -1f, 0);
+            Vector3 offset = new Vector3(0, -.8f, 0);
             turnIndicator.transform.position = current.transform.position + offset;
         }
         else if (enemies.Contains(current))
