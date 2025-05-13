@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
     public List<Health> partyMembers;
-    public List<Health> enemies;
+    public List<Health> enemies = new List<Health>();
     public static TurnManager Instance;
     public GameObject turnIndicator;
+    public GameObject deathScreen;
     private List<Health> turnOrder = new List<Health>();
     private int turnIndex = 0;
 
@@ -17,6 +20,11 @@ public class TurnManager : MonoBehaviour
     }
 
     void Start()
+    {
+        BuildInitialTurnOrder();
+    }
+
+    void BuildInitialTurnOrder()
     {
         turnOrder.Clear();
         turnOrder.AddRange(partyMembers);
@@ -39,7 +47,6 @@ public class TurnManager : MonoBehaviour
 
         Health current = turnOrder[turnIndex];
 
-        // Skip dead characters
         if (current == null || current.currentHealth <= 0)
         {
             Debug.Log($"{(current != null ? current.characterName : "NULL")} is dead or null. Skipping.");
@@ -56,7 +63,6 @@ public class TurnManager : MonoBehaviour
             turnIndicator.SetActive(true);
             Vector3 offset = new Vector3(0, -1f, 0);
             turnIndicator.transform.position = current.transform.position + offset;
-
         }
         else if (enemies.Contains(current))
         {
@@ -81,8 +87,28 @@ public class TurnManager : MonoBehaviour
             return;
         }
 
+        bool allPartyDead = partyMembers.TrueForAll(p => p.currentHealth <= 0);
+        if (allPartyDead)
+        {
+            Debug.Log("All party members are dead. Showing death screen...");
+            ShowDeathScreen();
+            return;
+        }
+
         turnIndex = (turnIndex + 1) % turnOrder.Count;
         ContinueTurnCycle();
+    }
+
+    void ShowDeathScreen()
+    {
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Death screen is not assigned.");
+        }
     }
 
     public void RemoveFromTurnOrder(Health deadCharacter)
@@ -97,6 +123,8 @@ public class TurnManager : MonoBehaviour
                 turnIndex--;
             }
         }
+
+        enemies.Remove(deadCharacter);
     }
 
     public Health GetCurrentPartyMember()
@@ -136,5 +164,34 @@ public class TurnManager : MonoBehaviour
 
         enemy.TickBuffs();
         NextTurn();
+    }
+
+    public void SetEnemiesForWave(GameObject wave)
+    {
+        enemies.Clear();
+        var waveEnemies = wave.GetComponentsInChildren<Health>(true);
+        foreach (Health enemy in waveEnemies)
+        {
+            if (enemy.CompareTag("Enemy"))
+            {
+                enemies.Add(enemy);
+            }
+        }
+
+        turnOrder.Clear();
+        turnOrder.AddRange(partyMembers);
+        turnOrder.AddRange(enemies);
+        turnIndex = 0;
+        ContinueTurnCycle();
+    }
+
+    public void OnRetryButtonPressed()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnMenuButtonPressed()
+    {
+        SceneManager.LoadScene(1);
     }
 }

@@ -67,6 +67,8 @@ public class LevelManager : MonoBehaviour
         currentWaveObject = enemyWaves[currentLevel];
         currentWaveObject.SetActive(true);
         EnableEnemyUIInWave(currentWaveObject);
+        TurnManager.Instance.SetEnemiesForWave(currentWaveObject);
+
 
         if (currentLevel == enemyWaves.Count - 1)
         {
@@ -97,7 +99,7 @@ public class LevelManager : MonoBehaviour
         if (allDead)
         {
             Debug.Log("Wave cleared!");
-            ShowGameOverScreen();
+            ShowVictoryScreen();
         }
     }
 

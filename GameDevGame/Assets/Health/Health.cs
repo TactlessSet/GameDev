@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
                 {
                     if (target.CompareTag("Enemy"))
                     {
-                        int baseDamage = 15;
+                        int baseDamage = 100;
                         int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                         target.TakeDamage(finalDamage);
                         Debug.Log($"{user.characterName} casts Magic Ball at {target.characterName}!");
@@ -95,7 +95,7 @@ public class Health : MonoBehaviour
 
                 actions.Add(new CharacterAction("Crossbow Shot", (user, target) =>
                 {
-                    int baseDamage = 15;
+                    int baseDamage = 100;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage);
                     Debug.Log($"{user.characterName} fires a crossbow shot at {target.characterName}!");
