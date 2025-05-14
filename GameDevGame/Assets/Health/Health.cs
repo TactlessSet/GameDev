@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
                 {
                     if (target.CompareTag("Enemy"))
                     {
-                        int baseDamage = 15;
+                        int baseDamage = 20;
                         int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                         target.TakeDamage(finalDamage);
                         Debug.Log($"{user.characterName} casts Magic Ball at {target.characterName}!");
@@ -95,7 +95,7 @@ public class Health : MonoBehaviour
 
                 actions.Add(new CharacterAction("Crossbow Shot", (user, target) =>
                 {
-                    int baseDamage = 15;
+                    int baseDamage = 20;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage);
                     Debug.Log($"{user.characterName} fires a crossbow shot at {target.characterName}!");
@@ -163,7 +163,7 @@ public class Health : MonoBehaviour
                     //heal ally 20-30%
                     if (target.CompareTag("Ally"))
                     {
-                        int healAmount = Mathf.FloorToInt(target.maxHealth * Random.Range(0.2f, 0.3f));
+                        int healAmount = Mathf.FloorToInt(target.maxHealth * Random.Range(0.3f, 0.5f));
                         target.Heal(healAmount);
                         Debug.Log($"{user.characterName} heals {target.characterName} for {healAmount} HP!");
                         //TriggerAnimatic(user, target);
@@ -178,7 +178,7 @@ public class Health : MonoBehaviour
                 actions.Add(new CharacterAction("Light Attack", (user, target) =>
                 {
                     //weak attack (cus everyone deserves something)
-                    int baseDamage = 5;
+                    int baseDamage = 10;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage);
                     Debug.Log($"{user.characterName} hits {target.characterName} with a Light Attack for {finalDamage} damage!");
@@ -189,7 +189,7 @@ public class Health : MonoBehaviour
             case "Rogue":
                 actions.Add(new CharacterAction("Knife Throw", (user, target) =>
                 {
-                    int baseDamage = 10;
+                    int baseDamage = 15;
                     int finalDamage = Mathf.FloorToInt(baseDamage * user.GetDamageMultiplier());
                     target.TakeDamage(finalDamage);
                     Debug.Log($"{user.characterName} throws a knife at {target.characterName} for {finalDamage} damage!");

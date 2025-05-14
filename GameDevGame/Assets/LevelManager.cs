@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        DisableAllEnemyUI();
+        DisableAllEnemyUIInWave();
         foreach (var wave in enemyWaves)
         {
             wave.SetActive(false);
@@ -68,22 +68,10 @@ public class LevelManager : MonoBehaviour
         currentWaveObject.SetActive(true);
         EnableEnemyUIInWave(currentWaveObject);
         TurnManager.Instance.SetEnemiesForWave(currentWaveObject);
-
-
-        if (currentLevel == enemyWaves.Count - 1)
-        {
-            Debug.Log("Boss wave starting!");
-        }
     }
 
     public void CheckIfEnemiesDefeated()
     {
-        if (currentWaveObject == null)
-        {
-            Debug.LogWarning("No current wave to check!");
-            return;
-        }
-
         bool allDead = true;
         var enemies = currentWaveObject.GetComponentsInChildren<Health>(true);
 
@@ -115,7 +103,7 @@ public class LevelManager : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
-    private void DisableAllEnemyUI()
+    private void DisableAllEnemyUIInWave()
     {
         foreach (var wave in enemyWaves)
         {
